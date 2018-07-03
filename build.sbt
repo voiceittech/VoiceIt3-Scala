@@ -11,8 +11,5 @@ lazy val root = (project in file("."))
       libraryDependencies ++= Seq(
         "com.typesafe.akka" %% "akka-http" % "10.1.3",
         "com.typesafe.akka" %% "akka-stream" % "2.5.12"
-        "com.github.voiceittech" % "voiceit2-scala" % "1.0.0"
       )
   )
-
-resolvers += "jitpack" at "https://jitpack.io"
