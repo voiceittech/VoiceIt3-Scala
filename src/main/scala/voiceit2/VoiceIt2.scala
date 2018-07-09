@@ -178,7 +178,7 @@ class VoiceIt2(val key : String, val token : String) {
       }
   }
 
-  def addUserToGroup(userId : String, groupId : String, callback : String => Unit) {
+  def addUserToGroup(groupId : String, userId : String, callback : String => Unit) {
 
     val formData = Multipart.FormData(
       Multipart.FormData.BodyPart("groupId", groupId),
@@ -201,7 +201,7 @@ class VoiceIt2(val key : String, val token : String) {
       }
   }
 
-  def removeUserFromGroup(userId : String, groupId : String, callback : String => Unit) {
+  def removeUserFromGroup(groupId : String, userId : String, callback : String => Unit) {
 
     val request = HttpRequest(
       method = HttpMethods.PUT,
