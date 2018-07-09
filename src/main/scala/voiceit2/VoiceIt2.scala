@@ -412,10 +412,10 @@ class VoiceIt2(val key : String, val token : String) {
       }
   }
 
-  def deleteFaceEnrollment(userId : String, faceId : String, callback : String => Unit) {
+  def deleteFaceEnrollment(userId : String, faceId : Int, callback : String => Unit) {
     val request = HttpRequest(
       method = HttpMethods.DELETE,
-      uri = baseUrl + "/enrollments/face/" + userId + "/" + faceId
+      uri = baseUrl + "/enrollments/face/" + userId + "/" + faceId.toString
     ).withHeaders(auth)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
@@ -428,10 +428,10 @@ class VoiceIt2(val key : String, val token : String) {
       }
   }
 
-  def deleteEnrollmentForUser(userId : String, enrollmentId : String,  callback : String => Unit) {
+  def deleteEnrollmentForUser(userId : String, enrollmentId : Int,  callback : String => Unit) {
     val request = HttpRequest(
       method = HttpMethods.DELETE,
-      uri = baseUrl + "/enrollments/" + userId + "/" + enrollmentId
+      uri = baseUrl + "/enrollments/" + userId + "/" + enrollmentId.toString
     ).withHeaders(auth)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
