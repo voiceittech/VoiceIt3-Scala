@@ -18,13 +18,14 @@ class VoiceIt2(val key : String, val token : String) {
   implicit val executionContext = system.dispatcher
   val auth = Authorization(BasicHttpCredentials(key, token))
   val baseUrl : String = "https://api.voiceit.io"
+  val headers = RawHeader("platformId", "43")
 
   def getAllUsers(callback : String => Unit) {
 
     val request = HttpRequest(
       method = HttpMethods.GET,
       uri = baseUrl + "/users"
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -41,7 +42,7 @@ class VoiceIt2(val key : String, val token : String) {
     val request = HttpRequest(
       method = HttpMethods.POST,
       uri = baseUrl + "/users"
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -58,7 +59,7 @@ class VoiceIt2(val key : String, val token : String) {
     val request = HttpRequest(
       method = HttpMethods.GET,
       uri = baseUrl + "/users/" + userId
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -75,7 +76,7 @@ class VoiceIt2(val key : String, val token : String) {
     val request = HttpRequest(
       method = HttpMethods.DELETE,
       uri = baseUrl + "/users/" + userId
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -92,7 +93,7 @@ class VoiceIt2(val key : String, val token : String) {
     val request = HttpRequest(
       method = HttpMethods.GET,
       uri = baseUrl + "/users/" + userId + "/groups"
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -110,7 +111,7 @@ class VoiceIt2(val key : String, val token : String) {
     val request = HttpRequest(
       method = HttpMethods.GET,
       uri = baseUrl + "/groups"
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -128,7 +129,7 @@ class VoiceIt2(val key : String, val token : String) {
     val request = HttpRequest(
       method = HttpMethods.GET,
       uri = baseUrl + "/groups/" + groupId
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -145,7 +146,7 @@ class VoiceIt2(val key : String, val token : String) {
     val request = HttpRequest(
       method = HttpMethods.GET,
       uri = baseUrl + "/groups/" + groupId + "/exists"
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -166,7 +167,7 @@ class VoiceIt2(val key : String, val token : String) {
       method = HttpMethods.POST,
       uri = baseUrl + "/groups",
       entity = formData.toEntity()
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -189,7 +190,7 @@ class VoiceIt2(val key : String, val token : String) {
       method = HttpMethods.PUT,
       uri = baseUrl + "/groups/addUser",
       entity = formData.toEntity()
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -206,7 +207,7 @@ class VoiceIt2(val key : String, val token : String) {
     val request = HttpRequest(
       method = HttpMethods.PUT,
       uri = baseUrl + "/groups/removeUser",
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -224,7 +225,7 @@ class VoiceIt2(val key : String, val token : String) {
     val request = HttpRequest(
       method = HttpMethods.DELETE,
       uri = baseUrl + "/groups/" + groupId,
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -241,7 +242,7 @@ class VoiceIt2(val key : String, val token : String) {
     val request = HttpRequest(
       method = HttpMethods.GET,
       uri = baseUrl + "/enrollments/" + userId,
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -258,7 +259,7 @@ class VoiceIt2(val key : String, val token : String) {
     val request = HttpRequest(
       method = HttpMethods.GET,
       uri = baseUrl + "/enrollments/face/" + userId,
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -283,7 +284,7 @@ class VoiceIt2(val key : String, val token : String) {
       method = HttpMethods.POST,
       uri = baseUrl + "/enrollments",
       entity = formData.toEntity()
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -308,7 +309,7 @@ class VoiceIt2(val key : String, val token : String) {
       method = HttpMethods.POST,
       uri = baseUrl + "/enrollments/byUrl",
       entity = formData.toEntity()
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -333,7 +334,7 @@ class VoiceIt2(val key : String, val token : String) {
       method = HttpMethods.POST,
       uri = baseUrl + "/enrollments/face",
       entity = formData.toEntity()
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -359,7 +360,7 @@ class VoiceIt2(val key : String, val token : String) {
       method = HttpMethods.POST,
       uri = baseUrl + "/enrollments/video",
       entity = formData.toEntity()
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -384,7 +385,7 @@ class VoiceIt2(val key : String, val token : String) {
       method = HttpMethods.POST,
       uri = baseUrl + "/enrollments/video/byUrl",
       entity = formData.toEntity()
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -400,7 +401,7 @@ class VoiceIt2(val key : String, val token : String) {
     val request = HttpRequest(
       method = HttpMethods.DELETE,
       uri = baseUrl + "/enrollments/" + userId + "/all"
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -416,7 +417,7 @@ class VoiceIt2(val key : String, val token : String) {
     val request = HttpRequest(
       method = HttpMethods.DELETE,
       uri = baseUrl + "/enrollments/face/" + userId + "/" + faceId.toString
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -432,7 +433,7 @@ class VoiceIt2(val key : String, val token : String) {
     val request = HttpRequest(
       method = HttpMethods.DELETE,
       uri = baseUrl + "/enrollments/" + userId + "/" + enrollmentId.toString
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -457,7 +458,7 @@ class VoiceIt2(val key : String, val token : String) {
       method = HttpMethods.POST,
       uri = baseUrl + "/verification",
       entity = formData.toEntity()
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -481,7 +482,7 @@ class VoiceIt2(val key : String, val token : String) {
       method = HttpMethods.POST,
       uri = baseUrl + "/verification/byUrl",
       entity = formData.toEntity()
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -507,7 +508,7 @@ class VoiceIt2(val key : String, val token : String) {
       method = HttpMethods.POST,
       uri = baseUrl + "/verification/face",
       entity = formData.toEntity()
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -533,7 +534,7 @@ class VoiceIt2(val key : String, val token : String) {
       method = HttpMethods.POST,
       uri = baseUrl + "/verification/video",
       entity = formData.toEntity()
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -558,7 +559,7 @@ class VoiceIt2(val key : String, val token : String) {
       method = HttpMethods.POST,
       uri = baseUrl + "/verification/video/byUrl",
       entity = formData.toEntity()
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -583,7 +584,7 @@ class VoiceIt2(val key : String, val token : String) {
       method = HttpMethods.POST,
       uri = baseUrl + "/identification",
       entity = formData.toEntity()
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -607,7 +608,7 @@ class VoiceIt2(val key : String, val token : String) {
       method = HttpMethods.POST,
       uri = baseUrl + "/identification/byUrl",
       entity = formData.toEntity()
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -633,7 +634,7 @@ class VoiceIt2(val key : String, val token : String) {
       method = HttpMethods.POST,
       uri = baseUrl + "/identification/video",
       entity = formData.toEntity()
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
@@ -658,7 +659,7 @@ class VoiceIt2(val key : String, val token : String) {
       method = HttpMethods.POST,
       uri = baseUrl + "/identification/video/byUrl",
       entity = formData.toEntity()
-    ).withHeaders(auth)
+    ).withHeaders(auth, headers)
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
     responseFuture
