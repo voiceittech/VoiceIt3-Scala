@@ -3,8 +3,6 @@ package voiceit2
 import scalaj.http._
 import java.io.File
 import java.io.FileInputStream
-// import java.io.BufferedOutputStream
-// import java.io.FileOutputStream
 
 class VoiceIt2(val key : String, val token : String) {
   val apikey = key
