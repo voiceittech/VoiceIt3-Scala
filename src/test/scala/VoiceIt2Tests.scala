@@ -79,110 +79,123 @@ class TestBasics extends FunSuite with BeforeAndAfter {
     var userId : String = _
 
     test("createUser()") {
-      val ret = Json.parse(vi.createUser)
+      val ret = Json.parse(vi.createUser())
       val status = (ret \ "status").get.as[Int]
-      assert(status === 201)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 201, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
       userId = (ret \ "userId").get.as[String]
     }
 
     test("getAllUsers()") {
       val ret = Json.parse(vi.getAllUsers)
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
     test("checkUserExists()") {
       val ret = Json.parse(vi.checkUserExists(userId))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
     var groupId : String = _
     test("createGroup()") {
       val ret = Json.parse(vi.createGroup("Sample Group Description"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 201)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 201, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
       groupId = (ret \ "groupId").get.as[String]
     }
 
     test("getAllGroups()") {
       val ret = Json.parse(vi.getAllGroups)
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
     test("getGroup()") {
       val ret = Json.parse(vi.getGroup(groupId))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
     test("checkGroupExists()") {
       val ret = Json.parse(vi.checkGroupExists(groupId))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
     test("addUserToGroup()") {
       val ret = Json.parse(vi.addUserToGroup(groupId, userId))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
     test("getGroupsForUser()") {
       val ret = Json.parse(vi.getGroupsForUser(userId))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
     test("removeUserFromGroup()") {
       val ret = Json.parse(vi.removeUserFromGroup(groupId, userId))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
     test("deleteUser()") {
       val ret = Json.parse(vi.deleteUser(userId))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
     test("deleteGroup()") {
       val ret = Json.parse(vi.deleteGroup(groupId))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
     test("getPhrases()") {
       val ret = Json.parse(vi.getPhrases("en-US"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 }
 
@@ -210,12 +223,13 @@ class TestGetVideoEnrollments extends FunSuite with BeforeAndAfter {
     }
 
 
-    test("getVideoEnrollments()") {
-      val ret = Json.parse(vi.getVideoEnrollments(userId))
+    test("getAllVideoEnrollments()") {
+      val ret = Json.parse(vi.getAllVideoEnrollments(userId))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
 }
@@ -244,12 +258,13 @@ class TestGetFaceEnrollments extends FunSuite with BeforeAndAfter {
     }
 
 
-    test("getFaceEnrollments()") {
-      val ret = Json.parse(vi.getFaceEnrollments(userId))
+    test("getAllFaceEnrollments()") {
+      val ret = Json.parse(vi.getAllFaceEnrollments(userId))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
 }
@@ -278,12 +293,13 @@ class TestGetVoiceEnrollments extends FunSuite with BeforeAndAfter {
     }
 
 
-    test("getVoiceEnrollments()") {
-      val ret = Json.parse(vi.getVoiceEnrollments(userId))
+    test("getAllVoiceEnrollments()") {
+      val ret = Json.parse(vi.getAllVoiceEnrollments(userId))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
 }
@@ -336,25 +352,28 @@ class TestDeleteEnrollment extends FunSuite with BeforeAndAfter {
     // Delete Video Enrollment for User
     test("deleteVideoEnrollment()") {
       vi.deleteVideoEnrollment(userId, videoEnrollmentId)
-      val ret = Json.parse(vi.getVideoEnrollments(userId))
+      val ret = Json.parse(vi.getAllVideoEnrollments(userId))
       val count = (ret \ "count").get.as[Int]
-      assert(count === 1)
+      val message = (ret \ "message").get.as[String]
+      assert(count === 1, "message: " + message)
     }
 
     // Delete Voice Enrollment for User
     test("deleteVoiceEnrollment()") {
       vi.deleteVoiceEnrollment(userId, voiceEnrollmentId)
-      val ret = Json.parse(vi.getVoiceEnrollments(userId))
+      val ret = Json.parse(vi.getAllVoiceEnrollments(userId))
       val count = (ret \ "count").get.as[Int]
-      assert(count === 1)
+      val message = (ret \ "message").get.as[String]
+      assert(count === 1, "message: " + message)
     }
 
     // Delete Face Enrollment for User
     test("deleteFaceEnrollment()") {
       vi.deleteFaceEnrollment(userId, faceEnrollmentId)
-      val ret = Json.parse(vi.getFaceEnrollments(userId))
+      val ret = Json.parse(vi.getAllFaceEnrollments(userId))
       val count = (ret \ "count").get.as[Int]
-      assert(count === 1)
+      val message = (ret \ "message").get.as[String]
+      assert(count === 1, "message: " + message)
     }
 }
 
@@ -402,25 +421,28 @@ class TestDeleteEnrollments extends FunSuite with BeforeAndAfter {
     // Delete All Video Enrollments for User
     test("deleteAllVideoEnrollments()") {
       vi.deleteAllVideoEnrollments(userId)
-      val ret = Json.parse(vi.getVideoEnrollments(userId))
+      val ret = Json.parse(vi.getAllVideoEnrollments(userId))
       val count = (ret \ "count").get.as[Int]
-      assert(count === 0)
+      val message = (ret \ "message").get.as[String]
+      assert(count === 0, "message: " + message)
     }
 
     // Delete All Voice Enrollments for User
     test("deleteAllVoiceEnrollments()") {
       vi.deleteAllVoiceEnrollments(userId)
-      val ret = Json.parse(vi.getVoiceEnrollments(userId))
+      val ret = Json.parse(vi.getAllVoiceEnrollments(userId))
       val count = (ret \ "count").get.as[Int]
-      assert(count === 0)
+      val message = (ret \ "message").get.as[String]
+      assert(count === 0, "message: " + message)
     }
 
     // Delete All Face Enrollments for User
     test("deleteAllFaceEnrollments()") {
       vi.deleteAllFaceEnrollments(userId)
-      val ret = Json.parse(vi.getFaceEnrollments(userId))
+      val ret = Json.parse(vi.getAllFaceEnrollments(userId))
       val count = (ret \ "count").get.as[Int]
-      assert(count === 0)
+      val message = (ret \ "message").get.as[String]
+      assert(count === 0, "message: " + message)
     }
 
 }
@@ -469,15 +491,16 @@ class TestDeleteAllEnrollments extends FunSuite with BeforeAndAfter {
     // Delete All Enrollments for User
     test("deleteAllEnrollmentsForUser()") {
       vi.deleteAllEnrollmentsForUser(userId)
-      var ret = Json.parse(vi.getVideoEnrollments(userId))
+      var ret = Json.parse(vi.getAllVideoEnrollments(userId))
       var count = (ret \ "count").get.as[Int]
-      assert(count === 0)
-      ret = Json.parse(vi.getVoiceEnrollments(userId))
+      val message = (ret \ "message").get.as[String]
+      assert(count === 0, "message: " + message)
+      ret = Json.parse(vi.getAllVoiceEnrollments(userId))
       count = (ret \ "count").get.as[Int]
-      assert(count === 0)
-      ret = Json.parse(vi.getFaceEnrollments(userId))
+      assert(count === 0, "message: " + message)
+      ret = Json.parse(vi.getAllFaceEnrollments(userId))
       count = (ret \ "count").get.as[Int]
-      assert(count === 0)
+      assert(count === 0, "message: " + message)
     }
 }
 
@@ -510,9 +533,10 @@ class TestVideoEnrollments extends FunSuite with BeforeAndAfter {
     test("createVideoEnrollment()") {
       val ret = Json.parse(vi.createVideoEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testenrollmentvideoEnrollmentArmaan1.mov"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 201)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 201, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 }
 
@@ -559,20 +583,22 @@ class TestVideoVerificationIdentification extends FunSuite with BeforeAndAfter {
     test("videoVerification()") {
       val ret = Json.parse(vi.videoVerification(userId1, "en-US", "never forget tomorrow is a new day", "./videoVerificationArmaan1.mov"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
     // Video Identification
     test("videoIdentification()") {
       val ret = Json.parse(vi.videoIdentification(groupId, "en-US", "never forget tomorrow is a new day", "./videoVerificationArmaan1.mov"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
       val userId = (ret \ "userId").get.as[String]
-      assert(userId === userId1)
+      assert(userId === userId1, "message: " + message)
     }
 }
 
@@ -601,9 +627,10 @@ class TestVideoEnrollmentsByUrl extends FunSuite with BeforeAndAfter {
     test("createVideoEnrollmentByUrl()") {
       val ret = Json.parse(vi.createVideoEnrollmentByUrl(userId, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/videoEnrollmentArmaan1.mov"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 201)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 201, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 }
 class TestVideoVerificationIdentificationByUrl extends FunSuite with BeforeAndAfter {
@@ -645,20 +672,22 @@ class TestVideoVerificationIdentificationByUrl extends FunSuite with BeforeAndAf
     test("videoVerificationByUrl()") {
       val ret = Json.parse(vi.videoVerificationByUrl(userId1, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/videoVerificationArmaan1.mov"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
     // Video Identification
     test("videoIdentificationByUrl()") {
       val ret = Json.parse(vi.videoIdentificationByUrl(groupId, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/videoVerificationArmaan1.mov"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
       val userId = (ret \ "userId").get.as[String]
-      assert(userId === userId1)
+      assert(userId === userId1, "message: " + message)
     }
 }
 
@@ -690,9 +719,10 @@ class TestVoiceEnrollments extends FunSuite with BeforeAndAfter {
     test("createVoiceEnrollment()") {
       val ret = Json.parse(vi.createVoiceEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testenrollmentenrollmentArmaan1.wav"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 201)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 201, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 }
 
@@ -721,9 +751,10 @@ class TestVoiceEnrollmentsByUrl extends FunSuite with BeforeAndAfter {
     test("createVoiceEnrollmentByUrl()") {
       val ret = Json.parse(vi.createVoiceEnrollmentByUrl(userId, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentArmaan1.wav"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 201)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 201, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 }
 
@@ -770,20 +801,22 @@ class TestVoiceVerificationIdentification extends FunSuite with BeforeAndAfter {
     test("voiceVerification()") {
       val ret = Json.parse(vi.voiceVerification(userId1, "en-US", "never forget tomorrow is a new day", "./verificationArmaan1.wav"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
     // Voice Identification
     test("voiceIdentification()") {
       val ret = Json.parse(vi.voiceIdentification(groupId, "en-US", "never forget tomorrow is a new day", "./verificationArmaan1.wav"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
       val userId = (ret \ "userId").get.as[String]
-      assert(userId === userId1)
+      assert(userId === userId1, "message: " + message)
     }
 }
 
@@ -829,20 +862,22 @@ class TestVoiceVerificationIdentificationByUrl extends FunSuite with BeforeAndAf
     test("voiceVerificationByUrl()") {
       val ret = Json.parse(vi.voiceVerificationByUrl(userId1, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/verificationArmaan1.wav"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
     // Voice Identification By Url
     test("voiceIdentificationByUrl()") {
       val ret = Json.parse(vi.voiceIdentificationByUrl(groupId, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/verificationArmaan1.wav"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
       val userId = (ret \ "userId").get.as[String]
-      assert(userId === userId1)
+      assert(userId === userId1, "message: " + message)
     }
 }
 
@@ -873,9 +908,10 @@ class TestFaceEnrollments extends FunSuite with BeforeAndAfter {
     test("createFaceEnrollment()") {
       val ret = Json.parse(vi.createFaceEnrollment(userId, "./testenrollmentfaceEnrollmentArmaan1.mp4"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 201)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 201, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 }
 
@@ -904,9 +940,10 @@ class TestFaceEnrollmentsByUrl extends FunSuite with BeforeAndAfter {
     test("createFaceEnrollmentByUrl()") {
       val ret = Json.parse(vi.createFaceEnrollmentByUrl(userId, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentArmaan1.mp4"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 201)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 201, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 }
 
@@ -953,20 +990,22 @@ class TestFaceVerificationIdentification extends FunSuite with BeforeAndAfter {
     test("faceVerification()") {
       val ret = Json.parse(vi.faceVerification(userId1, "./faceVerificationArmaan1.mp4"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
     // Face Identification
     test("faceIdentification()") {
       val ret = Json.parse(vi.faceIdentification(groupId, "./faceVerificationArmaan1.mp4"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
       val userId = (ret \ "userId").get.as[String]
-      assert(userId === userId1)
+      assert(userId === userId1, "message: " + message)
     }
 }
 
@@ -1012,19 +1051,21 @@ class TestFaceVerificationIdentificationByUrl extends FunSuite with BeforeAndAft
     test("faceVerificationByUrl()") {
       val ret = Json.parse(vi.faceVerificationByUrl(userId1, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceVerificationArmaan1.mp4"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
     }
 
     // Video Identification
     test("faceIdentificationByUrl()") {
       val ret = Json.parse(vi.faceIdentificationByUrl(groupId, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceVerificationArmaan1.mp4"))
       val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
+      val message = (ret \ "message").get.as[String]
+      assert(status === 200, "message: " + message)
       val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
+      assert(responseCode === "SUCC", "message: " + message)
       val userId = (ret \ "userId").get.as[String]
-      assert(userId === userId1)
+      assert(userId === userId1, "message: " + message)
     }
 }

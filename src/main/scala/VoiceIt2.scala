@@ -70,19 +70,15 @@ class VoiceIt2(val key : String, val token : String) {
     return Http(baseUrl + "/groups/" + groupId).headers(header).auth(apikey, apitoken).method("DELETE").asString.body
   }
 
-  def getVoiceEnrollments(userId : String) : String = {
+  def getAllVoiceEnrollments(userId : String) : String = {
     return Http(baseUrl + "/enrollments/voice/" + userId).headers(header).auth(apikey, apitoken).asString.body
   }
 
-  def getVideoEnrollments(userId : String) : String = {
+  def getAllVideoEnrollments(userId : String) : String = {
     return Http(baseUrl + "/enrollments/video/" + userId).headers(header).auth(apikey, apitoken).asString.body
   }
 
-  def getFaceEnrollments(userId : String) : String = {
-    return Http(baseUrl + "/enrollments/face/" + userId).headers(header).auth(apikey, apitoken).asString.body
-  }
-
-  def getFaceEnrollmentsForUser(userId : String) : String = {
+  def getAllFaceEnrollments(userId : String) : String = {
     return Http(baseUrl + "/enrollments/face/" + userId).headers(header).auth(apikey, apitoken).asString.body
   }
 
