@@ -72,7 +72,6 @@ class TestIO extends FunSuite with BeforeAndAfter {
     }
 }
 
-/*
 class TestBasics extends FunSuite with BeforeAndAfter {
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
@@ -942,9 +941,9 @@ class TestFaceVerificationIdentification extends FunSuite with BeforeAndAfter {
       vi.createFaceEnrollmentByUrl(userId1, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentArmaan1.mp4")
       vi.createFaceEnrollmentByUrl(userId1, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentArmaan2.mp4")
       vi.createFaceEnrollmentByUrl(userId1, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentArmaan3.mp4")
-      vi.createFaceEnrollmentByUrl(userId2, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentStephen1.mp4")
-      vi.createFaceEnrollmentByUrl(userId2, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentStephen2.mp4")
-      vi.createFaceEnrollmentByUrl(userId2, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentStephen3.mp4")
+      vi.createFaceEnrollmentByUrl(userId2, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/videoEnrollmentStephen1.mov")
+      vi.createFaceEnrollmentByUrl(userId2, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/videoEnrollmentStephen2.mov")
+      vi.createFaceEnrollmentByUrl(userId2, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/videoEnrollmentStephen3.mov")
     }
 
     after {
@@ -1001,9 +1000,9 @@ class TestFaceVerificationIdentificationByUrl extends FunSuite with BeforeAndAft
       vi.createFaceEnrollmentByUrl(userId1, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentArmaan1.mp4")
       vi.createFaceEnrollmentByUrl(userId1, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentArmaan2.mp4")
       vi.createFaceEnrollmentByUrl(userId1, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentArmaan3.mp4")
-      vi.createFaceEnrollmentByUrl(userId2, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentStephen1.mp4")
-      vi.createFaceEnrollmentByUrl(userId2, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentStephen2.mp4")
-      vi.createFaceEnrollmentByUrl(userId2, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentStephen3.mp4")
+      vi.createFaceEnrollmentByUrl(userId2, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/videoEnrollmentStephen1.mov")
+      vi.createFaceEnrollmentByUrl(userId2, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/videoEnrollmentStephen1.mov")
+      vi.createFaceEnrollmentByUrl(userId2, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/videoEnrollmentStephen1.mov")
     }
 
     after {
@@ -1035,4 +1034,3 @@ class TestFaceVerificationIdentificationByUrl extends FunSuite with BeforeAndAft
       assert(userId === userId1)
     }
 }
-*/

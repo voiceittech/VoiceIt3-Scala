@@ -9,6 +9,8 @@ class VoiceIt2(val key : String, val token : String) {
   val apitoken = token
   val baseUrl : String = "https://api.voiceit.io"
   val header = Seq("platformId" -> "43")
+  val connTimeoutMs = 1000000
+  val readTimeoutMs = 5000000
 
   def pathToByteArray(path : String) : Array[Byte] = {
     val is = new FileInputStream(path)
@@ -96,7 +98,7 @@ class VoiceIt2(val key : String, val token : String) {
       .headers(header).auth(apikey, apitoken)
       .postForm(Seq("userId" -> userId, "contentLanguage" -> lang, "phrase" -> phrase))
       .postMulti(MultiPart("recording", "recording", "audio/wav", file))
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
@@ -104,7 +106,7 @@ class VoiceIt2(val key : String, val token : String) {
     Http(baseUrl + "/enrollments/voice/byUrl")
       .headers(header).auth(apikey, apitoken)
       .postForm(Seq("userId" -> userId, "contentLanguage" -> lang, "fileUrl" -> url, "phrase" -> phrase))
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
@@ -131,7 +133,7 @@ class VoiceIt2(val key : String, val token : String) {
       .headers(header).auth(apikey, apitoken)
       .postForm(Seq("userId" -> userId, "doBlinkDetection" -> String.valueOf(blinkDetection)))
       .postMulti(MultiPart("video", "video", "video/mp4", file))
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
@@ -143,7 +145,7 @@ class VoiceIt2(val key : String, val token : String) {
     Http(baseUrl + "/enrollments/face/byUrl")
       .headers(header).auth(apikey, apitoken)
       .postForm(Seq("userId" -> userId, "doBlinkDetection" -> String.valueOf(blinkDetection), "fileUrl" -> url))
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
@@ -170,7 +172,8 @@ class VoiceIt2(val key : String, val token : String) {
       .headers(header).auth(apikey, apitoken)
       .postForm(Seq("userId" -> userId, "contentLanguage" -> lang, "doBlinkDetection" -> String.valueOf(blinkDetection), "phrase" -> phrase))
       .postMulti(MultiPart("video", "video", "video/mp4", file))
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000).asString.body
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
+      .asString.body
   }
 
   def createVideoEnrollmentByUrl(userId : String, lang : String, phrase : String, url : String) : String = {
@@ -181,56 +184,56 @@ class VoiceIt2(val key : String, val token : String) {
     Http(baseUrl + "/enrollments/video/byUrl")
       .headers(header).auth(apikey, apitoken)
       .postForm(Seq("userId" -> userId, "contentLanguage" -> lang, "doBlinkDetection" -> String.valueOf(blinkDetection), "fileUrl" -> url, "phrase" -> phrase))
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
   def deleteAllEnrollmentsForUser(userId : String) : String = {
     return Http(baseUrl + "/enrollments/" + userId + "/all")
       .headers(header).auth(apikey, apitoken).method("DELETE")
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
   def deleteVideoEnrollment(userId : String, enrollmentId : Int) : String = {
     return Http(baseUrl + "/enrollments/video/" + userId + "/" + String.valueOf(enrollmentId))
       .headers(header).auth(apikey, apitoken).method("DELETE")
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
   def deleteAllVideoEnrollments(userId : String) : String = {
     return Http(baseUrl + "/enrollments/" + userId + "/video")
       .headers(header).auth(apikey, apitoken).method("DELETE")
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
   def deleteVoiceEnrollment(userId : String, enrollmentId : Int) : String = {
     return Http(baseUrl + "/enrollments/voice/" + userId + "/" + String.valueOf(enrollmentId))
       .headers(header).auth(apikey, apitoken).method("DELETE")
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
   def deleteAllVoiceEnrollments(userId : String) : String = {
     return Http(baseUrl + "/enrollments/" + userId + "/voice")
       .headers(header).auth(apikey, apitoken).method("DELETE")
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
   def deleteFaceEnrollment(userId : String, enrollmentId : Int) : String = {
     return Http(baseUrl + "/enrollments/face/" + userId + "/" + String.valueOf(enrollmentId))
       .headers(header).auth(apikey, apitoken).method("DELETE")
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
   def deleteAllFaceEnrollments(userId : String) : String = {
     return Http(baseUrl + "/enrollments/" + userId + "/face")
       .headers(header).auth(apikey, apitoken).method("DELETE")
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
@@ -246,7 +249,7 @@ class VoiceIt2(val key : String, val token : String) {
       .headers(header).auth(apikey, apitoken)
       .postForm(Seq("userId" -> userId, "contentLanguage" -> lang, "phrase" -> phrase))
       .postMulti(MultiPart("recording", "recording", "audio/wav", file))
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
@@ -254,7 +257,7 @@ class VoiceIt2(val key : String, val token : String) {
     Http(baseUrl + "/verification/voice/byUrl")
       .headers(header).auth(apikey, apitoken)
       .postForm(Seq("userId" -> userId, "contentLanguage" -> lang, "fileUrl" -> url, "phrase" -> phrase))
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
@@ -281,7 +284,7 @@ class VoiceIt2(val key : String, val token : String) {
       .headers(header).auth(apikey, apitoken)
       .postForm(Seq("userId" -> userId, "doBlinkDetection" -> String.valueOf(blinkDetection)))
       .postMulti(MultiPart("video", "video", "video/mp4", file))
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
@@ -293,7 +296,7 @@ class VoiceIt2(val key : String, val token : String) {
     Http(baseUrl + "/verification/face/byUrl")
       .headers(header).auth(apikey, apitoken)
       .postForm(Seq("userId" -> userId, "fileUrl" -> url, "doBlinkDetection" -> String.valueOf(blinkDetection)))
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
@@ -320,7 +323,7 @@ class VoiceIt2(val key : String, val token : String) {
       .headers(header).auth(apikey, apitoken)
       .postForm(Seq("userId" -> userId, "contentLanguage" -> lang, "doBlinkDetection" -> String.valueOf(blinkDetection), "phrase" -> phrase))
       .postMulti(MultiPart("video", "video", "video/mp4", file))
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
@@ -332,7 +335,7 @@ class VoiceIt2(val key : String, val token : String) {
       Http(baseUrl + "/verification/video/byUrl")
         .headers(header).auth(apikey, apitoken)
         .postForm(Seq("userId" -> userId, "contentLanguage" -> lang, "doBlinkDetection" -> String.valueOf(blinkDetection), "fileUrl" -> url, "phrase" -> phrase))
-        .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+        .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
         .asString.body
   }
 
@@ -348,7 +351,7 @@ class VoiceIt2(val key : String, val token : String) {
       .headers(header).auth(apikey, apitoken)
       .postForm(Seq("groupId" -> groupId, "contentLanguage" -> lang, "phrase" -> phrase))
       .postMulti(MultiPart("recording", "recording", "audio/wav", file))
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
@@ -356,7 +359,7 @@ class VoiceIt2(val key : String, val token : String) {
     Http(baseUrl + "/identification/voice/byUrl")
       .headers(header).auth(apikey, apitoken)
       .postForm(Seq("groupId" -> groupId, "contentLanguage" -> lang, "fileUrl" -> url, "phrase" -> phrase))
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
@@ -383,7 +386,7 @@ class VoiceIt2(val key : String, val token : String) {
       .headers(header).auth(apikey, apitoken)
       .postForm(Seq("groupId" -> groupId, "contentLanguage" -> lang, "doBlinkDetection" -> String.valueOf(blinkDetection), "phrase" -> phrase))
       .postMulti(MultiPart("video", "video", "video/mp4", file))
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
@@ -394,7 +397,7 @@ class VoiceIt2(val key : String, val token : String) {
   def videoIdentificationByUrl(groupId : String, lang : String, phrase : String, url : String, blinkDetection : Boolean) : String = {
       Http(baseUrl + "/identification/video/byUrl")
         .headers(header).auth(apikey, apitoken).postForm(Seq("groupId" -> groupId, "contentLanguage" -> lang, "doBlinkDetection" -> String.valueOf(blinkDetection), "fileUrl" -> url, "phrase" -> phrase))
-        .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+        .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
         .asString.body
   }
 
@@ -421,7 +424,7 @@ class VoiceIt2(val key : String, val token : String) {
       .headers(header).auth(apikey, apitoken)
       .postForm(Seq("groupId" -> groupId, "doBlinkDetection" -> String.valueOf(blinkDetection)))
       .postMulti(MultiPart("video", "video", "video/mp4", file))
-      .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+      .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
 
@@ -432,7 +435,7 @@ class VoiceIt2(val key : String, val token : String) {
   def faceIdentificationByUrl(groupId : String, url : String, blinkDetection : Boolean) : String = {
       Http(baseUrl + "/identification/face/byUrl")
         .headers(header).auth(apikey, apitoken).postForm(Seq("groupId" -> groupId,"fileUrl" -> url, "doBlinkDetection" -> String.valueOf(blinkDetection)))
-        .timeout(connTimeoutMs = 1000000, readTimeoutMs = 5000000)
+        .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
         .asString.body
   }
 
