@@ -217,7 +217,7 @@ class TestGetVideoEnrollments extends FunSuite with BeforeAndAfter {
     }
 
     after {
-      vi.deleteAllEnrollmentsForUser(userId)
+      vi.deleteAllEnrollments(userId)
       vi.deleteUser(userId)
       FileUtils.deleteQuietly(new File("./testgetenrollmentvideoEnrollmentArmaan1.mov"))
     }
@@ -252,7 +252,7 @@ class TestGetFaceEnrollments extends FunSuite with BeforeAndAfter {
     }
 
     after {
-      vi.deleteAllEnrollmentsForUser(userId)
+      vi.deleteAllEnrollments(userId)
       vi.deleteUser(userId)
       FileUtils.deleteQuietly(new File("./testgetenrollmentfaceEnrollmentArmaan1.mp4"))
     }
@@ -287,7 +287,7 @@ class TestGetVoiceEnrollments extends FunSuite with BeforeAndAfter {
     }
 
     after {
-      vi.deleteAllEnrollmentsForUser(userId)
+      vi.deleteAllEnrollments(userId)
       vi.deleteUser(userId)
       FileUtils.deleteQuietly(new File("./testgetenrollmentenrollmentArmaan1.wav"))
     }
@@ -339,7 +339,7 @@ class TestDeleteEnrollment extends FunSuite with BeforeAndAfter {
     }
 
     after {
-      vi.deleteAllEnrollmentsForUser(userId)
+      vi.deleteAllEnrollments(userId)
       vi.deleteUser(userId)
       FileUtils.deleteQuietly(new File("./testdeleteenrollmentvideoEnrollmentArmaan1.mov"))
       FileUtils.deleteQuietly(new File("./testdeleteenrollmentvideoEnrollmentArmaan2.mov"))
@@ -489,8 +489,8 @@ class TestDeleteAllEnrollments extends FunSuite with BeforeAndAfter {
     }
 
     // Delete All Enrollments for User
-    test("deleteAllEnrollmentsForUser()") {
-      vi.deleteAllEnrollmentsForUser(userId)
+    test("deleteAllEnrollments()") {
+      vi.deleteAllEnrollments(userId)
       var ret = Json.parse(vi.getAllVideoEnrollments(userId))
       var count = (ret \ "count").get.as[Int]
       val message = (ret \ "message").get.as[String]
@@ -524,7 +524,7 @@ class TestVideoEnrollments extends FunSuite with BeforeAndAfter {
     }
 
     after {
-      vi.deleteAllEnrollmentsForUser(userId)
+      vi.deleteAllEnrollments(userId)
       vi.deleteUser(userId)
       FileUtils.deleteQuietly(new File("./testenrollmentvideoEnrollmentArmaan1.mov"))
     }
@@ -571,11 +571,11 @@ class TestVideoVerificationIdentification extends FunSuite with BeforeAndAfter {
     }
 
     after {
-      vi.deleteAllEnrollmentsForUser(userId1)
-      vi.deleteAllEnrollmentsForUser(userId2)
+      vi.deleteAllEnrollments(userId1)
+      vi.deleteAllEnrollments(userId2)
       vi.deleteUser(userId1)
       vi.deleteUser(userId2)
-      vi.deleteUser(groupId)
+      vi.deleteGroup(groupId)
       FileUtils.deleteQuietly(new File("./videoVerificationArmaan1.mov"))
     }
 
@@ -619,7 +619,7 @@ class TestVideoEnrollmentsByUrl extends FunSuite with BeforeAndAfter {
     }
 
     after {
-      vi.deleteAllEnrollmentsForUser(userId)
+      vi.deleteAllEnrollments(userId)
       vi.deleteUser(userId)
     }
 
@@ -659,13 +659,13 @@ class TestVideoVerificationIdentificationByUrl extends FunSuite with BeforeAndAf
       vi.createVideoEnrollmentByUrl(userId2, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/videoEnrollmentStephen3.mov")
     }
 
-    
+
     after {
-      vi.deleteAllEnrollmentsForUser(userId1)
-      vi.deleteAllEnrollmentsForUser(userId2)
+      vi.deleteAllEnrollments(userId1)
+      vi.deleteAllEnrollments(userId2)
       vi.deleteUser(userId1)
       vi.deleteUser(userId2)
-      vi.deleteUser(groupId)
+      vi.deleteGroup(groupId)
     }
 
     // Video Verification
@@ -710,7 +710,7 @@ class TestVoiceEnrollments extends FunSuite with BeforeAndAfter {
     }
 
     after {
-      vi.deleteAllEnrollmentsForUser(userId)
+      vi.deleteAllEnrollments(userId)
       vi.deleteUser(userId)
       FileUtils.deleteQuietly(new File("./testenrollmentenrollmentArmaan1.wav"))
     }
@@ -743,7 +743,7 @@ class TestVoiceEnrollmentsByUrl extends FunSuite with BeforeAndAfter {
     }
 
     after {
-      vi.deleteAllEnrollmentsForUser(userId)
+      vi.deleteAllEnrollments(userId)
       vi.deleteUser(userId)
     }
 
@@ -789,11 +789,11 @@ class TestVoiceVerificationIdentification extends FunSuite with BeforeAndAfter {
     }
 
     after {
-      vi.deleteAllEnrollmentsForUser(userId1)
-      vi.deleteAllEnrollmentsForUser(userId2)
+      vi.deleteAllEnrollments(userId1)
+      vi.deleteAllEnrollments(userId2)
       vi.deleteUser(userId1)
       vi.deleteUser(userId2)
-      vi.deleteUser(groupId)
+      vi.deleteGroup(groupId)
       FileUtils.deleteQuietly(new File("./verificationArmaan1.wav"))
     }
 
@@ -850,14 +850,14 @@ class TestVoiceVerificationIdentificationByUrl extends FunSuite with BeforeAndAf
     }
 
     after {
-      vi.deleteAllEnrollmentsForUser(userId1)
-      vi.deleteAllEnrollmentsForUser(userId2)
+      vi.deleteAllEnrollments(userId1)
+      vi.deleteAllEnrollments(userId2)
       vi.deleteUser(userId1)
       vi.deleteUser(userId2)
-      vi.deleteUser(groupId)
+      vi.deleteGroup(groupId)
     }
 
-      
+
     // Voice Verification By Url
     test("voiceVerificationByUrl()") {
       val ret = Json.parse(vi.voiceVerificationByUrl(userId1, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/verificationArmaan1.wav"))
@@ -899,7 +899,7 @@ class TestFaceEnrollments extends FunSuite with BeforeAndAfter {
     }
 
     after {
-      vi.deleteAllEnrollmentsForUser(userId)
+      vi.deleteAllEnrollments(userId)
       vi.deleteUser(userId)
       FileUtils.deleteQuietly(new File("./testenrollmentfaceEnrollmentArmaan1.mp4"))
     }
@@ -932,7 +932,7 @@ class TestFaceEnrollmentsByUrl extends FunSuite with BeforeAndAfter {
     }
 
     after {
-      vi.deleteAllEnrollmentsForUser(userId)
+      vi.deleteAllEnrollments(userId)
       vi.deleteUser(userId)
     }
 
@@ -978,11 +978,11 @@ class TestFaceVerificationIdentification extends FunSuite with BeforeAndAfter {
     }
 
     after {
-      vi.deleteAllEnrollmentsForUser(userId1)
-      vi.deleteAllEnrollmentsForUser(userId2)
+      vi.deleteAllEnrollments(userId1)
+      vi.deleteAllEnrollments(userId2)
       vi.deleteUser(userId1)
       vi.deleteUser(userId2)
-      vi.deleteUser(groupId)
+      vi.deleteGroup(groupId)
       FileUtils.deleteQuietly(new File("./faceVerificationArmaan1.mp4"))
     }
 
@@ -1039,14 +1039,14 @@ class TestFaceVerificationIdentificationByUrl extends FunSuite with BeforeAndAft
     }
 
     after {
-      vi.deleteAllEnrollmentsForUser(userId1)
-      vi.deleteAllEnrollmentsForUser(userId2)
+      vi.deleteAllEnrollments(userId1)
+      vi.deleteAllEnrollments(userId2)
       vi.deleteUser(userId1)
       vi.deleteUser(userId2)
-      vi.deleteUser(groupId)
+      vi.deleteGroup(groupId)
     }
 
-      
+
     // Video Verification
     test("faceVerificationByUrl()") {
       val ret = Json.parse(vi.faceVerificationByUrl(userId1, "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceVerificationArmaan1.mp4"))

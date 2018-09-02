@@ -184,7 +184,7 @@ class VoiceIt2(val key : String, val token : String) {
       .asString.body
   }
 
-  def deleteAllEnrollmentsForUser(userId : String) : String = {
+  def deleteAllEnrollments(userId : String) : String = {
     return Http(baseUrl + "/enrollments/" + userId + "/all")
       .headers(header).auth(apikey, apitoken).method("DELETE")
       .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
