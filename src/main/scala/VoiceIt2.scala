@@ -127,7 +127,7 @@ class VoiceIt2(val key : String, val token : String) {
   def createFaceEnrollment(userId : String, file : Array[Byte], blinkDetection : Boolean) : String = {
     Http(baseUrl + "/enrollments/face")
       .headers(header).auth(apikey, apitoken)
-      .postForm(Seq("userId" -> userId, "doBlinkDetection" -> String.valueOf(blinkDetection)))
+      .postForm(Seq("userId" -> userId))
       .postMulti(MultiPart("video", "video", "video/mp4", file))
       .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
@@ -140,7 +140,7 @@ class VoiceIt2(val key : String, val token : String) {
   def createFaceEnrollmentByUrl(userId : String, url : String, blinkDetection : Boolean) : String = {
     Http(baseUrl + "/enrollments/face/byUrl")
       .headers(header).auth(apikey, apitoken)
-      .postForm(Seq("userId" -> userId, "doBlinkDetection" -> String.valueOf(blinkDetection), "fileUrl" -> url))
+      .postForm(Seq("userId" -> userId, "fileUrl" -> url))
       .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
@@ -166,7 +166,7 @@ class VoiceIt2(val key : String, val token : String) {
   def createVideoEnrollment(userId : String, lang : String, phrase : String, file : Array[Byte], blinkDetection : Boolean) : String = {
     Http(baseUrl + "/enrollments/video")
       .headers(header).auth(apikey, apitoken)
-      .postForm(Seq("userId" -> userId, "contentLanguage" -> lang, "doBlinkDetection" -> String.valueOf(blinkDetection), "phrase" -> phrase))
+      .postForm(Seq("userId" -> userId, "contentLanguage" -> lang, "phrase" -> phrase))
       .postMulti(MultiPart("video", "video", "video/mp4", file))
       .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
@@ -179,7 +179,7 @@ class VoiceIt2(val key : String, val token : String) {
   def createVideoEnrollmentByUrl(userId : String, lang : String, phrase : String, url : String, blinkDetection : Boolean) : String = {
     Http(baseUrl + "/enrollments/video/byUrl")
       .headers(header).auth(apikey, apitoken)
-      .postForm(Seq("userId" -> userId, "contentLanguage" -> lang, "doBlinkDetection" -> String.valueOf(blinkDetection), "fileUrl" -> url, "phrase" -> phrase))
+      .postForm(Seq("userId" -> userId, "contentLanguage" -> lang, "fileUrl" -> url, "phrase" -> phrase))
       .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
@@ -278,7 +278,7 @@ class VoiceIt2(val key : String, val token : String) {
   def faceVerification(userId : String, file : Array[Byte], blinkDetection : Boolean) : String = {
     Http(baseUrl + "/verification/face")
       .headers(header).auth(apikey, apitoken)
-      .postForm(Seq("userId" -> userId, "doBlinkDetection" -> String.valueOf(blinkDetection)))
+      .postForm(Seq("userId" -> userId))
       .postMulti(MultiPart("video", "video", "video/mp4", file))
       .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
@@ -291,7 +291,7 @@ class VoiceIt2(val key : String, val token : String) {
   def faceVerificationByUrl(userId : String, url : String, blinkDetection : Boolean) : String = {
     Http(baseUrl + "/verification/face/byUrl")
       .headers(header).auth(apikey, apitoken)
-      .postForm(Seq("userId" -> userId, "fileUrl" -> url, "doBlinkDetection" -> String.valueOf(blinkDetection)))
+      .postForm(Seq("userId" -> userId, "fileUrl" -> url))
       .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
   }
@@ -317,7 +317,7 @@ class VoiceIt2(val key : String, val token : String) {
   def videoVerification(userId : String, lang : String, phrase : String, file : Array[Byte], blinkDetection : Boolean) : String = {
     Http(baseUrl + "/verification/video")
       .headers(header).auth(apikey, apitoken)
-      .postForm(Seq("userId" -> userId, "contentLanguage" -> lang, "doBlinkDetection" -> String.valueOf(blinkDetection), "phrase" -> phrase))
+      .postForm(Seq("userId" -> userId, "contentLanguage" -> lang, "phrase" -> phrase))
       .postMulti(MultiPart("video", "video", "video/mp4", file))
       .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
@@ -330,7 +330,7 @@ class VoiceIt2(val key : String, val token : String) {
   def videoVerificationByUrl(userId : String, lang : String, phrase : String, url : String, blinkDetection : Boolean) : String = {
       Http(baseUrl + "/verification/video/byUrl")
         .headers(header).auth(apikey, apitoken)
-        .postForm(Seq("userId" -> userId, "contentLanguage" -> lang, "doBlinkDetection" -> String.valueOf(blinkDetection), "fileUrl" -> url, "phrase" -> phrase))
+        .postForm(Seq("userId" -> userId, "contentLanguage" -> lang, "fileUrl" -> url, "phrase" -> phrase))
         .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
         .asString.body
   }
@@ -380,7 +380,7 @@ class VoiceIt2(val key : String, val token : String) {
   def videoIdentification(groupId : String, lang : String, phrase : String, file : Array[Byte], blinkDetection : Boolean) : String = {
     Http(baseUrl + "/identification/video")
       .headers(header).auth(apikey, apitoken)
-      .postForm(Seq("groupId" -> groupId, "contentLanguage" -> lang, "doBlinkDetection" -> String.valueOf(blinkDetection), "phrase" -> phrase))
+      .postForm(Seq("groupId" -> groupId, "contentLanguage" -> lang, "phrase" -> phrase))
       .postMulti(MultiPart("video", "video", "video/mp4", file))
       .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
@@ -392,7 +392,7 @@ class VoiceIt2(val key : String, val token : String) {
 
   def videoIdentificationByUrl(groupId : String, lang : String, phrase : String, url : String, blinkDetection : Boolean) : String = {
       Http(baseUrl + "/identification/video/byUrl")
-        .headers(header).auth(apikey, apitoken).postForm(Seq("groupId" -> groupId, "contentLanguage" -> lang, "doBlinkDetection" -> String.valueOf(blinkDetection), "fileUrl" -> url, "phrase" -> phrase))
+        .headers(header).auth(apikey, apitoken).postForm(Seq("groupId" -> groupId, "contentLanguage" -> lang, "fileUrl" -> url, "phrase" -> phrase))
         .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
         .asString.body
   }
@@ -418,7 +418,7 @@ class VoiceIt2(val key : String, val token : String) {
   def faceIdentification(groupId : String, file : Array[Byte], blinkDetection : Boolean) : String = {
     Http(baseUrl + "/identification/face")
       .headers(header).auth(apikey, apitoken)
-      .postForm(Seq("groupId" -> groupId, "doBlinkDetection" -> String.valueOf(blinkDetection)))
+      .postForm(Seq("groupId" -> groupId))
       .postMulti(MultiPart("video", "video", "video/mp4", file))
       .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
       .asString.body
@@ -430,7 +430,7 @@ class VoiceIt2(val key : String, val token : String) {
 
   def faceIdentificationByUrl(groupId : String, url : String, blinkDetection : Boolean) : String = {
       Http(baseUrl + "/identification/face/byUrl")
-        .headers(header).auth(apikey, apitoken).postForm(Seq("groupId" -> groupId,"fileUrl" -> url, "doBlinkDetection" -> String.valueOf(blinkDetection)))
+        .headers(header).auth(apikey, apitoken).postForm(Seq("groupId" -> groupId,"fileUrl" -> url))
         .timeout(connTimeoutMs = connTimeoutMs, readTimeoutMs = readTimeoutMs)
         .asString.body
   }
