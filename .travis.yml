@@ -2,8 +2,7 @@ if: branch = master
 language: scala
 scala:
   - 2.12.6
-# script: sbt test
-script: echo "testing success"
+script: sbt test
 after_success: ./release.sh
 notifications:
   slack:
