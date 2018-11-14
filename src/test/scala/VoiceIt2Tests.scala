@@ -171,6 +171,15 @@ class TestBasics extends FunSuite with BeforeAndAfter {
       assert(responseCode === "SUCC", "message: " + message)
     }
 
+    test("createUserToken()") {
+      val ret = Json.parse(vi.createUserToken(userId))
+      val status = (ret \ "status").get.as[Int]
+      val message = (ret \ "message").get.as[String]
+      assert(status === 201, "message: " + message)
+      val responseCode = (ret \ "responseCode").get.as[String]
+      assert(responseCode === "SUCC", "message: " + message)
+    }
+
     test("deleteUser()") {
       val ret = Json.parse(vi.deleteUser(userId))
       val status = (ret \ "status").get.as[Int]
@@ -197,6 +206,7 @@ class TestBasics extends FunSuite with BeforeAndAfter {
       val responseCode = (ret \ "responseCode").get.as[String]
       assert(responseCode === "SUCC", "message: " + message)
     }
+
 }
 
 class TestGetVideoEnrollments extends FunSuite with BeforeAndAfter {
@@ -282,14 +292,14 @@ class TestGetVoiceEnrollments extends FunSuite with BeforeAndAfter {
     before {
       var ret = Json.parse(vi.createUser)
       userId = (ret \ "userId").get.as[String]
-      downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentArmaan1.wav", "./testgetenrollmentenrollmentArmaan1.wav")
-      vi.createVoiceEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testgetenrollmentenrollmentArmaan1.wav")
+      downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentNoel1.wav", "./testgetenrollmentenrollmentNoel1.wav")
+      vi.createVoiceEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testgetenrollmentenrollmentNoel1.wav")
     }
 
     after {
       vi.deleteAllEnrollments(userId)
       vi.deleteUser(userId)
-      FileUtils.deleteQuietly(new File("./testgetenrollmentenrollmentArmaan1.wav"))
+      FileUtils.deleteQuietly(new File("./testgetenrollmentenrollmentNoel1.wav"))
     }
 
 
@@ -323,16 +333,16 @@ class TestDeleteEnrollment extends FunSuite with BeforeAndAfter {
       userId = (ret \ "userId").get.as[String]
       downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/videoEnrollmentArmaan1.mov", "./testdeleteenrollmentvideoEnrollmentArmaan1.mov")
       downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/videoEnrollmentArmaan2.mov", "./testdeleteenrollmentvideoEnrollmentArmaan2.mov")
-      downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentArmaan1.wav", "./testdeleteenrollmentenrollmentArmaan1.wav")
-      downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentArmaan2.wav", "./testdeleteenrollmentenrollmentArmaan2.wav")
+      downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentNoel1.wav", "./testdeleteenrollmentenrollmentNoel1.wav")
+      downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentNoel2.wav", "./testdeleteenrollmentenrollmentNoel2.wav")
       downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentArmaan1.mp4", "./testdeleteenrollmentfaceEnrollmentArmaan1.mp4")
       downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentArmaan2.mp4", "./testdeleteenrollmentfaceEnrollmentArmaan2.mp4")
       ret = Json.parse(vi.createVideoEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testdeleteenrollmentvideoEnrollmentArmaan1.mov"))
       videoEnrollmentId = (ret \ "id").get.as[Int]
       vi.createVideoEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testdeleteenrollmentvideoEnrollmentArmaan2.mov")
-      ret = Json.parse(vi.createVoiceEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testdeleteenrollmentenrollmentArmaan1.wav"))
+      ret = Json.parse(vi.createVoiceEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testdeleteenrollmentenrollmentNoel1.wav"))
       voiceEnrollmentId = (ret \ "id").get.as[Int]
-      vi.createVoiceEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testdeleteenrollmentenrollmentArmaan2.wav")
+      vi.createVoiceEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testdeleteenrollmentenrollmentNoel2.wav")
       ret = Json.parse(vi.createFaceEnrollment(userId, "./testdeleteenrollmentfaceEnrollmentArmaan1.mp4"))
       faceEnrollmentId = (ret \ "faceEnrollmentId").get.as[Int]
       vi.createFaceEnrollment(userId, "./testdeleteenrollmentfaceEnrollmentArmaan2.mp4")
@@ -345,8 +355,8 @@ class TestDeleteEnrollment extends FunSuite with BeforeAndAfter {
       FileUtils.deleteQuietly(new File("./testdeleteenrollmentvideoEnrollmentArmaan2.mov"))
       FileUtils.deleteQuietly(new File("./testdeleteenrollmentfaceEnrollmentArmaan1.mp4"))
       FileUtils.deleteQuietly(new File("./testdeleteenrollmentfaceEnrollmentArmaan2.mp4"))
-      FileUtils.deleteQuietly(new File("./testdeleteenrollmentenrollmentArmaan1.wav"))
-      FileUtils.deleteQuietly(new File("./testdeleteenrollmentenrollmentArmaan2.wav"))
+      FileUtils.deleteQuietly(new File("./testdeleteenrollmentenrollmentNoel1.wav"))
+      FileUtils.deleteQuietly(new File("./testdeleteenrollmentenrollmentNoel2.wav"))
     }
 
     // Delete Video Enrollment for User
@@ -393,16 +403,16 @@ class TestDeleteEnrollments extends FunSuite with BeforeAndAfter {
       userId = (ret \ "userId").get.as[String]
       downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/videoEnrollmentArmaan1.mov", "./testdeleteenrollmentsvideoEnrollmentArmaan1.mov")
       downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/videoEnrollmentArmaan2.mov", "./testdeleteenrollmentsvideoEnrollmentArmaan2.mov")
-      downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentArmaan1.wav", "./testdeleteenrollmentsenrollmentArmaan1.wav")
-      downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentArmaan2.wav", "./testdeleteenrollmentsenrollmentArmaan2.wav")
+      downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentNoel1.wav", "./testdeleteenrollmentsenrollmentNoel1.wav")
+      downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentNoel2.wav", "./testdeleteenrollmentsenrollmentNoel2.wav")
       downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentArmaan1.mp4", "./testdeleteenrollmentsfaceEnrollmentArmaan1.mp4")
       downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentArmaan2.mp4", "./testdeleteenrollmentsfaceEnrollmentArmaan2.mp4")
 
       vi.createVideoEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testdeleteenrollmentsvideoEnrollmentArmaan1.mov")
       vi.createVideoEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testdeleteenrollmentsvideoEnrollmentArmaan2.mov")
 
-      vi.createVoiceEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testdeleteenrollmentsenrollmentArmaan1.wav")
-      vi.createVoiceEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testdeleteenrollmentsenrollmentArmaan2.wav")
+      vi.createVoiceEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testdeleteenrollmentsenrollmentNoel1.wav")
+      vi.createVoiceEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testdeleteenrollmentsenrollmentNoel2.wav")
 
       vi.createFaceEnrollment(userId, "./testdeleteenrollmentsfaceEnrollmentArmaan1.mp4")
       vi.createFaceEnrollment(userId, "./testdeleteenrollmentsfaceEnrollmentArmaan2.mp4")
@@ -412,8 +422,8 @@ class TestDeleteEnrollments extends FunSuite with BeforeAndAfter {
       vi.deleteUser(userId)
       FileUtils.deleteQuietly(new File("./testdeleteenrollmentsvideoEnrollmentArmaan1.mov"))
       FileUtils.deleteQuietly(new File("./testdeleteenrollmentsvideoEnrollmentArmaan2.mov"))
-      FileUtils.deleteQuietly(new File("./testdeleteenrollmentsenrollmentArmaan1.wav"))
-      FileUtils.deleteQuietly(new File("./testdeleteenrollmentsenrollmentArmaan2.wav"))
+      FileUtils.deleteQuietly(new File("./testdeleteenrollmentsenrollmentNoel1.wav"))
+      FileUtils.deleteQuietly(new File("./testdeleteenrollmentsenrollmentNoel2.wav"))
       FileUtils.deleteQuietly(new File("./testdeleteenrollmentsfaceEnrollmentArmaan1.mp4"))
       FileUtils.deleteQuietly(new File("./testdeleteenrollmentsfaceEnrollmentArmaan2.mp4"))
     }
@@ -463,16 +473,16 @@ class TestDeleteAllEnrollments extends FunSuite with BeforeAndAfter {
       userId = (ret \ "userId").get.as[String]
       downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/videoEnrollmentArmaan1.mov", "./testdeleteallenrollmentsvideoEnrollmentArmaan1.mov")
       downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/videoEnrollmentArmaan2.mov", "./testdeleteallenrollmentsvideoEnrollmentArmaan2.mov")
-      downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentArmaan1.wav", "./testdeleteallenrollmentsenrollmentArmaan1.wav")
-      downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentArmaan2.wav", "./testdeleteallenrollmentsenrollmentArmaan2.wav")
+      downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentNoel1.wav", "./testdeleteallenrollmentsenrollmentNoel1.wav")
+      downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentNoel2.wav", "./testdeleteallenrollmentsenrollmentNoel2.wav")
       downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentArmaan1.mp4", "./testdeleteallenrollmentsfaceEnrollmentArmaan1.mp4")
       downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/faceEnrollmentArmaan2.mp4", "./testdeleteallenrollmentsfaceEnrollmentArmaan2.mp4")
 
       vi.createVideoEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testdeleteallenrollmentsvideoEnrollmentArmaan1.mov")
       vi.createVideoEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testdeleteallenrollmentsvideoEnrollmentArmaan2.mov")
 
-      vi.createVoiceEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testdeleteallenrollmentsenrollmentArmaan1.wav")
-      vi.createVoiceEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testdeleteallenrollmentsenrollmentArmaan2.wav")
+      vi.createVoiceEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testdeleteallenrollmentsenrollmentNoel1.wav")
+      vi.createVoiceEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testdeleteallenrollmentsenrollmentNoel2.wav")
 
       vi.createFaceEnrollment(userId, "./testdeleteallenrollmentsfaceEnrollmentArmaan1.mp4")
       vi.createFaceEnrollment(userId, "./testdeleteallenrollmentsfaceEnrollmentArmaan2.mp4")
@@ -482,8 +492,8 @@ class TestDeleteAllEnrollments extends FunSuite with BeforeAndAfter {
       vi.deleteUser(userId)
       FileUtils.deleteQuietly(new File("./testdeleteallenrollmentsvideoEnrollmentArmaan1.mov"))
       FileUtils.deleteQuietly(new File("./testdeleteallenrollmentsvideoEnrollmentArmaan2.mov"))
-      FileUtils.deleteQuietly(new File("./testdeleteallenrollmentsenrollmentArmaan1.wav"))
-      FileUtils.deleteQuietly(new File("./testdeleteallenrollmentsenrollmentArmaan2.wav"))
+      FileUtils.deleteQuietly(new File("./testdeleteallenrollmentsenrollmentNoel1.wav"))
+      FileUtils.deleteQuietly(new File("./testdeleteallenrollmentsenrollmentNoel2.wav"))
       FileUtils.deleteQuietly(new File("./testdeleteallenrollmentsfaceEnrollmentArmaan1.mp4"))
       FileUtils.deleteQuietly(new File("./testdeleteallenrollmentsfaceEnrollmentArmaan2.mp4"))
     }
@@ -704,7 +714,7 @@ class TestVoiceEnrollments extends FunSuite with BeforeAndAfter {
     var userId : String = _
 
     before {
-      downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentArmaan1.wav", "./testenrollmentenrollmentArmaan1.wav")
+      downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentNoel1.wav", "./testenrollmentenrollmentNoel1.wav")
       var ret = Json.parse(vi.createUser)
       userId = (ret \ "userId").get.as[String]
     }
@@ -712,12 +722,12 @@ class TestVoiceEnrollments extends FunSuite with BeforeAndAfter {
     after {
       vi.deleteAllEnrollments(userId)
       vi.deleteUser(userId)
-      FileUtils.deleteQuietly(new File("./testenrollmentenrollmentArmaan1.wav"))
+      FileUtils.deleteQuietly(new File("./testenrollmentenrollmentNoel1.wav"))
     }
 
     // Create Voice Enrollment
     test("createVoiceEnrollment()") {
-      val ret = Json.parse(vi.createVoiceEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testenrollmentenrollmentArmaan1.wav"))
+      val ret = Json.parse(vi.createVoiceEnrollment(userId, "en-US", "never forget tomorrow is a new day", "./testenrollmentenrollmentNoel1.wav"))
       val status = (ret \ "status").get.as[Int]
       val message = (ret \ "message").get.as[String]
       assert(status === 201, "message: " + message)
@@ -749,7 +759,7 @@ class TestVoiceEnrollmentsByUrl extends FunSuite with BeforeAndAfter {
 
     // Create Voice Enrollment
     test("createVoiceEnrollmentByUrl()") {
-      val ret = Json.parse(vi.createVoiceEnrollmentByUrl(userId, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentArmaan1.wav"))
+      val ret = Json.parse(vi.createVoiceEnrollmentByUrl(userId, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentNoel1.wav"))
       val status = (ret \ "status").get.as[Int]
       val message = (ret \ "message").get.as[String]
       assert(status === 201, "message: " + message)
@@ -771,7 +781,7 @@ class TestVoiceVerificationIdentification extends FunSuite with BeforeAndAfter {
     var groupId : String = _
 
     before {
-      downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/verificationArmaan1.wav", "./verificationArmaan1.wav")
+      downloadFile("https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/verificationNoel1.wav", "./verificationNoel1.wav")
       var ret = Json.parse(vi.createUser)
       userId1 = (ret \ "userId").get.as[String]
       ret = Json.parse(vi.createUser)
@@ -780,9 +790,9 @@ class TestVoiceVerificationIdentification extends FunSuite with BeforeAndAfter {
       groupId = (ret \ "groupId").get.as[String]
       vi.addUserToGroup(groupId, userId1)
       vi.addUserToGroup(groupId, userId2)
-      vi.createVoiceEnrollmentByUrl(userId1, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentArmaan1.wav")
-      vi.createVoiceEnrollmentByUrl(userId1, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentArmaan2.wav")
-      vi.createVoiceEnrollmentByUrl(userId1, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentArmaan3.wav")
+      vi.createVoiceEnrollmentByUrl(userId1, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentNoel1.wav")
+      vi.createVoiceEnrollmentByUrl(userId1, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentNoel2.wav")
+      vi.createVoiceEnrollmentByUrl(userId1, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentNoel3.wav")
       vi.createVoiceEnrollmentByUrl(userId2, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentStephen1.wav")
       vi.createVoiceEnrollmentByUrl(userId2, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentStephen2.wav")
       vi.createVoiceEnrollmentByUrl(userId2, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentStephen3.wav")
@@ -794,12 +804,12 @@ class TestVoiceVerificationIdentification extends FunSuite with BeforeAndAfter {
       vi.deleteUser(userId1)
       vi.deleteUser(userId2)
       vi.deleteGroup(groupId)
-      FileUtils.deleteQuietly(new File("./verificationArmaan1.wav"))
+      FileUtils.deleteQuietly(new File("./verificationNoel1.wav"))
     }
 
     // Voice Verification
     test("voiceVerification()") {
-      val ret = Json.parse(vi.voiceVerification(userId1, "en-US", "never forget tomorrow is a new day", "./verificationArmaan1.wav"))
+      val ret = Json.parse(vi.voiceVerification(userId1, "en-US", "never forget tomorrow is a new day", "./verificationNoel1.wav"))
       val status = (ret \ "status").get.as[Int]
       val message = (ret \ "message").get.as[String]
       assert(status === 200, "message: " + message)
@@ -809,7 +819,7 @@ class TestVoiceVerificationIdentification extends FunSuite with BeforeAndAfter {
 
     // Voice Identification
     test("voiceIdentification()") {
-      val ret = Json.parse(vi.voiceIdentification(groupId, "en-US", "never forget tomorrow is a new day", "./verificationArmaan1.wav"))
+      val ret = Json.parse(vi.voiceIdentification(groupId, "en-US", "never forget tomorrow is a new day", "./verificationNoel1.wav"))
       val status = (ret \ "status").get.as[Int]
       val message = (ret \ "message").get.as[String]
       assert(status === 200, "message: " + message)
@@ -841,9 +851,9 @@ class TestVoiceVerificationIdentificationByUrl extends FunSuite with BeforeAndAf
       groupId = (ret \ "groupId").get.as[String]
       vi.addUserToGroup(groupId, userId1)
       vi.addUserToGroup(groupId, userId2)
-      vi.createVoiceEnrollmentByUrl(userId1, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentArmaan1.wav")
-      vi.createVoiceEnrollmentByUrl(userId1, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentArmaan2.wav")
-      vi.createVoiceEnrollmentByUrl(userId1, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentArmaan3.wav")
+      vi.createVoiceEnrollmentByUrl(userId1, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentNoel1.wav")
+      vi.createVoiceEnrollmentByUrl(userId1, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentNoel2.wav")
+      vi.createVoiceEnrollmentByUrl(userId1, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentNoel3.wav")
       vi.createVoiceEnrollmentByUrl(userId2, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentStephen1.wav")
       vi.createVoiceEnrollmentByUrl(userId2, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentStephen2.wav")
       vi.createVoiceEnrollmentByUrl(userId2, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/enrollmentStephen3.wav")
@@ -860,7 +870,7 @@ class TestVoiceVerificationIdentificationByUrl extends FunSuite with BeforeAndAf
 
     // Voice Verification By Url
     test("voiceVerificationByUrl()") {
-      val ret = Json.parse(vi.voiceVerificationByUrl(userId1, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/verificationArmaan1.wav"))
+      val ret = Json.parse(vi.voiceVerificationByUrl(userId1, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/verificationNoel1.wav"))
       val status = (ret \ "status").get.as[Int]
       val message = (ret \ "message").get.as[String]
       assert(status === 200, "message: " + message)
@@ -870,7 +880,7 @@ class TestVoiceVerificationIdentificationByUrl extends FunSuite with BeforeAndAf
 
     // Voice Identification By Url
     test("voiceIdentificationByUrl()") {
-      val ret = Json.parse(vi.voiceIdentificationByUrl(groupId, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/verificationArmaan1.wav"))
+      val ret = Json.parse(vi.voiceIdentificationByUrl(groupId, "en-US", "never forget tomorrow is a new day", "https://s3.amazonaws.com/voiceit-api2-testing-files/test-data/verificationNoel1.wav"))
       val status = (ret \ "status").get.as[Int]
       val message = (ret \ "message").get.as[String]
       assert(status === 200, "message: " + message)

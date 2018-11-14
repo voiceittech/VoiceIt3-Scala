@@ -439,4 +439,8 @@ class VoiceIt2(val key : String, val token : String) {
     return Http(baseUrl + "/phrases/" + contentLanguage).headers(header).auth(apikey, apitoken).asString.body
   }
 
+  def createUserToken(userId : String) : String = {
+    return Http(baseUrl + "/users/" + userId + "/token").headers(header).auth(apikey, apitoken).postMulti().asString.body
+  }
+
 }
