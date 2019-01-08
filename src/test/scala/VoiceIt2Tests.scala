@@ -3,6 +3,7 @@ package test
 import sys.process._
 import org.apache.commons.io.FileUtils
 import java.io.IOException
+import java.io.PrintWriter
 import java.net.URL
 import java.io.File
 import org.scalatest.FunSuite
@@ -15,6 +16,7 @@ class TestIO extends FunSuite with BeforeAndAfter {
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
     var vi = new VoiceIt2(viapikey, viapitoken)
+
     var userId : String = _
     test("createVideoEnrollment()") {
       intercept[IOException] {
@@ -76,6 +78,11 @@ class TestWebhooks extends FunSuite with BeforeAndAfter {
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
     var vi = new VoiceIt2(viapikey, viapitoken)
+
+    if (sys.env("BOXFUSE_ENV") == "voiceittest") {
+      new PrintWriter(sys.env("HOME") + "/platformVersion") { write(vi.getVersion()); close }
+    }
+
     vi.addNotificationUrl("https://voiceit.io")
     assert(vi.notificationUrl === "https://voiceit.io", "Webhook URL == https://voiceit.io")
     vi.removeNotificationUrl()

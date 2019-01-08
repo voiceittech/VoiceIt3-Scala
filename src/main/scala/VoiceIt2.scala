@@ -8,8 +8,9 @@ class VoiceIt2(val key : String, val token : String) {
   val apikey = key
   val apitoken = token
   val baseUrl : String = "https://api.voiceit.io"
+  val version : String = "2.2.0"
   var notificationUrl : String = ""
-  val header = Seq("platformId" -> "43")
+  val header = Seq("platformId" -> "43", "platformVersion" -> version)
   val connTimeoutMs = 60000
   val readTimeoutMs = 60000
 
@@ -20,6 +21,10 @@ class VoiceIt2(val key : String, val token : String) {
     is.read(bytes)
     is.close()
       return bytes
+  }
+
+  def getVersion() : String = {
+    return version
   }
 
   def addNotificationUrl(url : String) : Unit = {
@@ -652,11 +657,7 @@ class VoiceIt2(val key : String, val token : String) {
   }
 
   def createUserToken(userId : String, timeOut : Int) : String = {
-    if (notificationUrl == "") {
-      return Http(baseUrl + "/users/" + userId + "/token").param("timeOut", String.valueOf(timeOut)).headers(header).auth(apikey, apitoken).postMulti().asString.body
-    } else {
-      return Http(baseUrl + "/users/" + userId + "/token").param("notificationURL", notificationUrl).param("timeOut", String.valueOf(timeOut)).headers(header).auth(apikey, apitoken).postMulti().asString.body
-    }
+    return Http(baseUrl + "/users/" + userId + "/token").param("timeOut", String.valueOf(timeOut)).headers(header).auth(apikey, apitoken).postMulti().asString.body
   }
 
 }
