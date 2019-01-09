@@ -656,8 +656,8 @@ class VoiceIt2(val key : String, val token : String) {
     }
   }
 
-  def createUserToken(userId : String, timeOut : Int) : String = {
-    return Http(baseUrl + "/users/" + userId + "/token").param("timeOut", String.valueOf(timeOut)).headers(header).auth(apikey, apitoken).postMulti().asString.body
+  def createUserToken(userId : String, secondsToTimeout : Int) : String = {
+    return Http(baseUrl + "/users/" + userId + "/token").param("timeOut", String.valueOf(secondsToTimeout)).headers(header).auth(apikey, apitoken).postMulti().asString.body
   }
 
 }
