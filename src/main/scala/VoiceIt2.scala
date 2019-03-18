@@ -8,7 +8,7 @@ class VoiceIt2(val key : String, val token : String) {
   val apikey = key
   val apitoken = token
   val baseUrl : String = "https://api.voiceit.io"
-  val version : String = "2.2.0"
+  val version : String = "2.3.0"
   var notificationUrl : String = ""
   val header = Seq("platformId" -> "43", "platformVersion" -> version)
   val connTimeoutMs = 60000
@@ -658,6 +658,10 @@ class VoiceIt2(val key : String, val token : String) {
 
   def createUserToken(userId : String, secondsToTimeout : Int) : String = {
     return Http(baseUrl + "/users/" + userId + "/token").param("timeOut", String.valueOf(secondsToTimeout)).headers(header).auth(apikey, apitoken).postMulti().asString.body
+  }
+
+  def expireUserTokens(userId : String) : String = {
+    return Http(baseUrl + "/users/" + userId + "/expireTokens").headers(header).auth(apikey, apitoken).postMulti().asString.body
   }
 
 }

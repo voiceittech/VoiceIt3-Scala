@@ -198,6 +198,15 @@ class TestBasics extends FunSuite with BeforeAndAfter {
       assert(responseCode === "SUCC", "message: " + message)
     }
 
+    test("expireUserTokens()") {
+      val ret = Json.parse(vi.expireUserTokens(userId))
+      val status = (ret \ "status").get.as[Int]
+      val message = (ret \ "message").get.as[String]
+      assert(status === 201, "message: " + message)
+      val responseCode = (ret \ "responseCode").get.as[String]
+      assert(responseCode === "SUCC", "message: " + message)
+    }
+
     test("deleteUser()") {
       val ret = Json.parse(vi.deleteUser(userId))
       val status = (ret \ "status").get.as[Int]
