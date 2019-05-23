@@ -385,6 +385,7 @@ class TestDeleteEnrollment extends FunSuite with BeforeAndAfter {
       FileUtils.deleteQuietly(new File("./testdeleteenrollmentenrollmentA1.wav"))
       FileUtils.deleteQuietly(new File("./testdeleteenrollmentenrollmentA2.wav"))
     }
+}
 
 class TestDeleteEnrollments extends FunSuite with BeforeAndAfter {
 
