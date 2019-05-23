@@ -135,15 +135,6 @@ class TestBasics extends FunSuite with BeforeAndAfter {
       groupId = (ret \ "groupId").get.as[String]
     }
 
-    test("getAllGroups()") {
-      val ret = Json.parse(vi.getAllGroups)
-      val status = (ret \ "status").get.as[Int]
-      val message = (ret \ "message").get.as[String]
-      assert(status === 200, "message: " + message)
-      val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC", "message: " + message)
-    }
-
     test("getGroup()") {
       val ret = Json.parse(vi.getGroup(groupId))
       val status = (ret \ "status").get.as[Int]
