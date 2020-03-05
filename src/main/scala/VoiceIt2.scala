@@ -8,7 +8,7 @@ class VoiceIt2(val key : String, val token : String) {
   val apikey = key
   val apitoken = token
   val baseUrl : String = "https://api.voiceit.io"
-  val version : String = "2.4.0"
+  val version : String = "2.4.1"
   var notificationUrl : String = ""
   val header = Seq("platformId" -> "43", "platformVersion" -> version)
   val connTimeoutMs = 60000
