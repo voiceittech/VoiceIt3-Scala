@@ -1,6 +1,6 @@
 <img src="./scala.png" width="100%" style="width:100%" />
 
-# VoiceIt2-Scala [![travis](https://travis-ci.com/voiceittech/VoiceIt2-Scala.svg?branch=master)](https://travis-ci.com/voiceittech/VoiceIt2-Scala) ![MIT](https://img.shields.io/github/license/mashape/apistatus.svg) [![](https://jitpack.io/v/voiceittech/VoiceIt2-Scala.svg)](https://jitpack.io/#voiceittech/VoiceIt2-Scala)
+# VoiceIt2-Scala [![travis](https://travis-ci.com/voiceittech/VoiceIt2-Scala.svg?branch=master)](https://travis-ci.com/voiceittech/VoiceIt2-Scala) [![](https://jitpack.io/v/voiceittech/VoiceIt2-Scala.svg)](https://jitpack.io/#voiceittech/VoiceIt2-Scala) ![MIT](https://img.shields.io/github/license/mashape/apistatus.svg)
 
 A Scala wrapper for VoiceIt's API 2.0 featuring Voice + Face Verification and Identification.
 
