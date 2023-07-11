@@ -1,6 +1,6 @@
 lazy val commonSettings = Seq(
     organization := "io.voiceit",
-    version := "2.7.1",
+    version := "2.7.2",
     scalaVersion := "2.12.6"
 )
 
