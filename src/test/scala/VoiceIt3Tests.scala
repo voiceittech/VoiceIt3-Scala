@@ -9,13 +9,13 @@ import java.io.File
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.BeforeAndAfter
 import play.api.libs.json.Json
-import voiceit2.VoiceIt2
+import voiceit3.VoiceIt3
 
 class TestIO extends AnyFunSuite with BeforeAndAfter {
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
 
     var userId : String = _
     test("createVideoEnrollment()") {
@@ -77,7 +77,7 @@ class TestIO extends AnyFunSuite with BeforeAndAfter {
 class TestWebhooks extends AnyFunSuite with BeforeAndAfter {
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
 
     if (sys.env("BOXFUSE_ENV") == "voiceittest") {
       new PrintWriter(sys.env("HOME") + "/platformVersion") { write(vi.getVersion()); close }
@@ -93,7 +93,7 @@ class TestWebhooks extends AnyFunSuite with BeforeAndAfter {
 class TestBasics extends AnyFunSuite with BeforeAndAfter {
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId : String = _
 
     test("createUser()") {
@@ -230,7 +230,7 @@ class TestBasics extends AnyFunSuite with BeforeAndAfter {
 class TestSubAccount extends AnyFunSuite with BeforeAndAfter {
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var managedSubAccountAPIKey : String = _
     var unManagedSubAccountAPIKey : String = _
 
@@ -292,7 +292,7 @@ class TestGetVideoEnrollments extends AnyFunSuite with BeforeAndAfter {
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId : String = _
 
     before {
@@ -327,7 +327,7 @@ class TestGetFaceEnrollments extends AnyFunSuite with BeforeAndAfter {
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId : String = _
 
     before {
@@ -362,7 +362,7 @@ class TestGetVoiceEnrollments extends AnyFunSuite with BeforeAndAfter {
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId : String = _
 
     before {
@@ -398,7 +398,7 @@ class TestDeleteEnrollment extends AnyFunSuite with BeforeAndAfter {
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId : String = _
     var videoEnrollmentId : Int = _
     var faceEnrollmentId : Int = _
@@ -444,7 +444,7 @@ class TestDeleteEnrollments extends AnyFunSuite with BeforeAndAfter {
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId : String = _
 
     before {
@@ -487,7 +487,7 @@ class TestDeleteAllEnrollments extends AnyFunSuite with BeforeAndAfter {
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId : String = _
 
     before {
@@ -545,7 +545,7 @@ class TestVideoEnrollments extends AnyFunSuite with BeforeAndAfter {
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId : String = _
 
 
@@ -579,7 +579,7 @@ class TestVideoVerificationIdentification extends AnyFunSuite with BeforeAndAfte
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId1 : String = _
     var userId2 : String = _
     var groupId : String = _
@@ -642,7 +642,7 @@ class TestVideoEnrollmentsByUrl extends AnyFunSuite with BeforeAndAfter {
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId : String = _
 
     before {
@@ -669,7 +669,7 @@ class TestVideoVerificationIdentificationByUrl extends AnyFunSuite with BeforeAn
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId1 : String = _
     var userId2 : String = _
     var groupId : String = _
@@ -732,7 +732,7 @@ class TestVoiceEnrollments extends AnyFunSuite with BeforeAndAfter {
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId : String = _
 
     before {
@@ -766,7 +766,7 @@ class TestVoiceEnrollmentsByUrl extends AnyFunSuite with BeforeAndAfter {
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId : String = _
 
     before {
@@ -797,7 +797,7 @@ class TestVoiceVerificationIdentification extends AnyFunSuite with BeforeAndAfte
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId1 : String = _
     var userId2 : String = _
     var groupId : String = _
@@ -859,7 +859,7 @@ class TestVoiceVerificationIdentificationByUrl extends AnyFunSuite with BeforeAn
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId1 : String = _
     var userId2 : String = _
     var groupId : String = _
@@ -921,7 +921,7 @@ class TestFaceEnrollments extends AnyFunSuite with BeforeAndAfter {
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId : String = _
 
     before {
@@ -955,7 +955,7 @@ class TestFaceEnrollmentsByUrl extends AnyFunSuite with BeforeAndAfter {
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId : String = _
 
     before {
@@ -986,7 +986,7 @@ class TestFaceVerificationIdentification extends AnyFunSuite with BeforeAndAfter
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId1 : String = _
     var userId2 : String = _
     var groupId : String = _
@@ -1048,7 +1048,7 @@ class TestFaceVerificationIdentificationByUrl extends AnyFunSuite with BeforeAnd
 
     val viapikey = sys.env("VIAPIKEY")
     val viapitoken = sys.env("VIAPITOKEN")
-    var vi = new VoiceIt2(viapikey, viapitoken)
+    var vi = new VoiceIt3(viapikey, viapitoken)
     var userId1 : String = _
     var userId2 : String = _
     var groupId : String = _
