@@ -11,4 +11,4 @@ project/plugins/project/
 .cache
 .lib/
 .DS_Store
-src/main/scala/voiceit2/VoiceIt2Driver.scala
+src/main/scala/voiceit3/VoiceIt3Driver.scala
