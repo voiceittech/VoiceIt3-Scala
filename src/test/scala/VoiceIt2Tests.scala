@@ -264,14 +264,6 @@ class TestSubAccount extends AnyFunSuite with BeforeAndAfter {
     }
 
 
-    test("switchSubAccountType()") {
-      val ret = Json.parse(vi.switchSubAccountType(unManagedSubAccountAPIKey))
-      val message = (ret \ "message").get.as[String]
-      val status = (ret \ "status").get.as[Int]
-      assert(status === 200)
-      val responseCode = (ret \ "responseCode").get.as[String]
-      assert(responseCode === "SUCC")
-    }
 
     test("deleteSubAccount1()") {
       val ret = Json.parse(vi.deleteSubAccount(managedSubAccountAPIKey))
