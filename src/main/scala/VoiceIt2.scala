@@ -608,13 +608,6 @@ class VoiceIt2(val key : String, val token : String, var customUrl: String = "ht
     }
   }
 
-  def switchSubAccountType(subAccountAPIKey : String) : String = {
-    if (notificationUrl == "") {
-      return Http(baseUrl + "/subaccount/" + subAccountAPIKey + "/switchType").headers(header).auth(apikey, apitoken).method("POST").timeout(connTimeoutMs = 100000, readTimeoutMs = 100000).asString.body
-    } else {
-      return Http(baseUrl + "/subaccount/" + subAccountAPIKey + "/switchType").param("notificationURL", notificationUrl).headers(header).auth(apikey, apitoken).method("POST").timeout(connTimeoutMs = 100000, readTimeoutMs = 100000).asString.body
-    }
-  }
 
   def regenerateSubAccountAPIToken(subaccountAPIKey : String) : String = {
 
