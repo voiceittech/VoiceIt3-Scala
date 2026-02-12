@@ -7,7 +7,7 @@ lazy val commonSettings = Seq(
 lazy val root = (project in file("."))
   .settings(
       commonSettings,
-      name := "VoiceIt2",
+      name := "VoiceIt3",
       libraryDependencies +=  "org.scalaj" %% "scalaj-http" % "2.4.2",
       libraryDependencies += "com.typesafe.play" %% "play-json" % "2.9.4" % "test",
       libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.16" % "test",
