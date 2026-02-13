@@ -4,7 +4,7 @@ import scalaj.http._
 import java.io.{File, FileInputStream, IOException}
 import java.nio.file.{Paths, Files}
 
-class VoiceIt3(val key : String, val token : String, var customUrl: String = "https://qpi.voiceit.io") {
+class VoiceIt3(val key : String, val token : String, var customUrl: String = "https://api.voiceit.io") {
   val apikey = key
   val apitoken = token
   val baseUrl : String = customUrl
