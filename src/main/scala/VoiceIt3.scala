@@ -118,9 +118,9 @@ class VoiceIt3(val key : String, val token : String, var customUrl: String = "ht
 
   def removeUserFromGroup(groupId : String, userId : String) : String = {
     if (notificationUrl == "") {
-      return Http(baseUrl + "/groups/removeUser").headers(header).auth(apikey, apitoken).postForm(Seq("groupId" -> groupId, "userId" -> userId)).method("PUT").timeout(connTimeoutMs = 100000, readTimeoutMs = 100000).asString.body
+      return Http(baseUrl + "/groups/removeUser").headers(header).auth(apikey, apitoken).postForm(Seq("groupId" -> groupId, "userId" -> userId)).method("DELETE").timeout(connTimeoutMs = 100000, readTimeoutMs = 100000).asString.body
     } else {
-      return Http(baseUrl + "/groups/removeUser").param("notificationURL", notificationUrl).headers(header).auth(apikey, apitoken).postForm(Seq("groupId" -> groupId, "userId" -> userId)).method("PUT").timeout(connTimeoutMs = 100000, readTimeoutMs = 100000).asString.body
+      return Http(baseUrl + "/groups/removeUser").param("notificationURL", notificationUrl).headers(header).auth(apikey, apitoken).postForm(Seq("groupId" -> groupId, "userId" -> userId)).method("DELETE").timeout(connTimeoutMs = 100000, readTimeoutMs = 100000).asString.body
     }
   }
 
