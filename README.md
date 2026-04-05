@@ -1,5 +1,6 @@
 <img src="./scala.png" width="100%" style="width:100%" />
 
+[![API Test](https://github.com/voiceittech/VoiceIt3-Scala/actions/workflows/test.yml/badge.svg)](https://github.com/voiceittech/VoiceIt3-Scala/actions/workflows/test.yml)
 [![Version](https://img.shields.io/badge/version-2.7.3-blue)](https://github.com/voiceittech/VoiceIt3-Scala)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](https://github.com/voiceittech/VoiceIt3-Scala/blob/main/LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Scala-lightgrey)](https://github.com/voiceittech/VoiceIt3-Scala)
