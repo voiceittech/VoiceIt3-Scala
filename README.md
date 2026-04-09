@@ -1,10 +1,10 @@
 <img src="./scala.png" width="100%" style="width:100%" />
 
-[![API Test](https://github.com/voiceittech/VoiceIt3-Scala/actions/workflows/test.yml/badge.svg)](https://github.com/voiceittech/VoiceIt3-Scala/actions/workflows/test.yml)
-[![Dependabot](https://img.shields.io/github/issues-pr/voiceittech/VoiceIt3-Scala/dependencies?label=dependabot&logo=dependabot&color=025e8c)](https://github.com/voiceittech/VoiceIt3-Scala/pulls?q=is%3Apr+label%3Adependencies)
-[![Version](https://img.shields.io/badge/version-2.7.3-blue)](https://github.com/voiceittech/VoiceIt3-Scala)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green)](https://github.com/voiceittech/VoiceIt3-Scala/blob/main/LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Scala-lightgrey)](https://github.com/voiceittech/VoiceIt3-Scala)
+[![API Test](https://github.com/voiceittech/voiceit3-scala/actions/workflows/test.yml/badge.svg)](https://github.com/voiceittech/voiceit3-scala/actions/workflows/test.yml)
+[![Dependabot](https://img.shields.io/github/issues-pr/voiceittech/voiceit3-scala/dependencies?label=dependabot&logo=dependabot&color=025e8c)](https://github.com/voiceittech/voiceit3-scala/pulls?q=is%3Apr+label%3Adependencies)
+[![Version](https://img.shields.io/badge/version-3.0.0-blue)](https://github.com/voiceittech/voiceit3-scala)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](https://github.com/voiceittech/voiceit3-scala/blob/main/LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Scala-lightgrey)](https://github.com/voiceittech/voiceit3-scala)
 [![VoiceIt API](https://img.shields.io/badge/VoiceIt-API%203.0-blue)](https://voiceit.io)
 
 
@@ -19,7 +19,7 @@ libraryDependencies += "com.github.voiceittech" % "VoiceIt3-Scala" % "2.7.2"
 
 Or clone directly:
 ```bash
-git clone https://github.com/voiceittech/VoiceIt3-Scala.git
+git clone https://github.com/voiceittech/voiceit3-scala.git
 ```
 
 ## Getting Started
@@ -34,7 +34,7 @@ You can visit our [HTTP API 3.0 Documentation](https://voiceit.io/documentation)
 
 If you find this SDK useful, please consider giving it a star on GitHub — it helps others discover the project!
 
-[![GitHub stars](https://img.shields.io/github/stars/voiceittech/VoiceIt3-Scala?style=social)](https://github.com/voiceittech/VoiceIt3-Scala/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/voiceittech/voiceit3-scala?style=social)](https://github.com/voiceittech/voiceit3-scala/stargazers)
 
 ## License
 
