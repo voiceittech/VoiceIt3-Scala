@@ -14,7 +14,7 @@ A Scala wrapper for VoiceIt's API 3.0 featuring Voice + Face Verification and Id
 
 Add to your `build.sbt`:
 ```scala
-libraryDependencies += "com.github.voiceittech" % "VoiceIt3-Scala" % "2.7.2"
+libraryDependencies += "com.github.voiceittech" % "voiceit3-scala" % "3.0.0"
 ```
 
 Or clone directly:
@@ -28,8 +28,10 @@ Sign up at [voiceit.io/pricing](https://voiceit.io/pricing) to get your API Key 
 
 <img src="./Graphics/getcredentials.png" alt="API Key and Token" width="400px" />
 
-## API calls
+## API Calls
+
 You can visit our [HTTP API 3.0 Documentation](https://voiceit.io/documentation) for detailed information on each API call.
+
 ## Support
 
 If you find this SDK useful, please consider giving it a star on GitHub — it helps others discover the project!
@@ -38,5 +40,5 @@ If you find this SDK useful, please consider giving it a star on GitHub — it h
 
 ## License
 
-VoiceIt3-Scala is available under the MIT license. See the LICENSE file for more info.
+voiceit3-scala is available under the MIT license. See the LICENSE file for more info.
 
