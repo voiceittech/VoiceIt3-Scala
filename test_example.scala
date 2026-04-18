@@ -1,9 +1,9 @@
-import voiceit3.VoiceIt3
+import voiceit3.voiceit3
 
 object TestExample extends App {
   val ak = sys.env("VOICEIT_API_KEY")
   val at = sys.env("VOICEIT_API_TOKEN")
-  val vi = new VoiceIt3(ak, at)
+  val vi = new voiceit3(ak, at)
   val phrase = "Never forget tomorrow is a new day"
   val td = "test-data"
 
