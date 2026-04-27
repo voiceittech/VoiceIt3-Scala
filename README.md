@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/voiceittech/voiceit3-scala/main/scala.png" width="100%" style="width:100%" />
 
-[![API Test](https://github.com/voiceittech/voiceit3-scala/actions/workflows/test.yml/badge.svg)](https://github.com/voiceittech/voiceit3-scala/actions/workflows/test.yml)
+[![API Test](https://github.com/voiceittech/voiceit3-scala/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/voiceittech/voiceit3-scala/actions/workflows/test.yml)
 [![Dependabot](https://img.shields.io/github/issues-pr/voiceittech/voiceit3-scala/dependencies?label=dependabot&logo=dependabot&color=025e8c)](https://github.com/voiceittech/voiceit3-scala/pulls?q=is%3Apr+label%3Adependencies)
 [![Version](https://img.shields.io/badge/version-3.0.3-blue)](https://github.com/voiceittech/voiceit3-scala)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](https://github.com/voiceittech/voiceit3-scala/blob/main/LICENSE)
